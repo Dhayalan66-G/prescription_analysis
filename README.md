@@ -4,6 +4,20 @@ This project analyzes handwritten prescriptions using machine learning and OCR (
 It provides a web interface for users to upload prescription images and get analyzed results.
 
 ---
+<div style="display: flex; justify-content: center; flex-wrap: wrap; gap: 10px;">
+
+  <img src="Pre1.jpg" alt="Presentation" 
+       style="width:800px; max-width:90%; height:auto; border:1px solid #ccc; border-radius:5px;"/>
+
+</div>
+
+<div style="display: flex; justify-content: center; flex-wrap: wrap; gap: 10px;">
+
+  <img src="Presentation1.jpg" alt="Presentation" 
+       style="width:800px; max-width:90%; height:auto; border:1px solid #ccc; border-radius:5px;"/>
+
+</div>
+
 
 ## 🛠️ Installation & Setup
 
