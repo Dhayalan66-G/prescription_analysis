@@ -1,0 +1,121 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Email Sender</title>
+    <style>
+        body {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            margin: 0;
+            background-image: url('back4.png');
+            background-size: cover;
+            background-repeat: no-repeat;
+            background-position: center;
+        }
+        .container {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            background-color: rgba(255, 255, 255, 0.8);
+            padding: 80px;
+            border: 4px solid #ccc;
+            border-radius: 10px;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+        }
+        .header-container {
+            width: 100%;
+            background-color: #007bff;
+            color: white;
+            padding: 10px;
+            border-radius: 5px;
+            text-align: center;
+            margin-bottom: 20px;
+        }
+        .input-container, .message-container, .data-container {
+            width: 100%;
+            background-color: #e9ecef;
+            padding: 10px;
+            border-radius: 5px;
+            margin-bottom: 20px;
+            text-align: center;
+        }
+        form {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+        }
+        label, input, textarea, button {
+            margin: 5px;
+            width: 100%;
+            max-width: 300px;
+        }
+        button {
+            width: auto;
+            color: white;
+            border: none;
+            padding: 10px 20px;
+            border-radius: 5px;
+            cursor: pointer;
+        }
+        .submit-button {
+            background-color: violet;
+        }
+        .submit-button:hover {
+            background-color: #ee82ee;
+        }
+        .data-button {
+            background-color: blue;
+        }
+        .data-button:hover {
+            background-color: #0000cd;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <div class="header-container">
+            <h1>Medicine Taken time Mail Sender</h1>
+        </div>
+        <form id="smsemailForm">
+            <div class="input-container">
+                <label for="email">Email:</label>
+                <input type="email" id="email" name="email" title="Please enter patient Email" required>
+            </div>
+            <div class="message-container">
+                <label for="message">Message:</label><br>
+                <textarea id="message" name="message" rows="4" cols="50" required></textarea>
+            </div>
+            <button type="submit" class="submit-button">Send Mail</button>
+        </form>
+        <div class="data-container">
+            <button type="button" class="data-button" onclick="openCV()">Medicine Taken Result</button>
+        </div>
+    </div>
+
+    <script>
+        document.getElementById('smsemailForm').addEventListener('submit', function(event) {
+            event.preventDefault();
+            sendEmailSMS();
+        });
+
+        function sendEmailSMS() {
+            var email = document.getElementById('email').value;
+            var message = document.getElementById('message').value;
+
+            // Generate the mailto link
+            var mailtoLink = `mailto:${email}?body=${encodeURIComponent(message)}`;
+
+            // Open the user's default email client with the mailto link
+            window.location.href = mailtoLink;
+        }
+
+        function openCV() {
+            window.location.href = 'cv.html';
+        }
+    </script>
+</body>
+</html>

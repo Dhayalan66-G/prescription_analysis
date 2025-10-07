@@ -1,0 +1,39 @@
+{
+  "medicines": [
+    {
+      "name": "Paracetamol",
+      "uses": "Pain relief and fever reduction",
+      "dosage": "500 mg to 1000 mg every 4 to 6 hours as needed, up to 4 g per day for adults",
+      "timing": "Take with or without food. Avoid alcohol while taking.",
+      "side_effects": "Common side effects include nausea, vomiting, and headache. Rarely, severe allergic reactions may occur."
+    },
+    {
+      "name": "Amoxicillin",
+      "uses": "Antibiotic for bacterial infections",
+      "dosage": "Typically 250 mg to 500 mg every 8 hours or 500 mg to 875 mg every 12 hours depending on the severity of the infection",
+      "timing": "Take on an empty stomach, usually 1 hour before or 2 hours after meals, with a full glass of water.",
+      "side_effects": "Common side effects include nausea, vomiting, diarrhea, and rash. Severe allergic reactions are rare but possible."
+    },
+    {
+      "name": "Betaloc",
+      "uses": "Beta-blocker for high blood pressure, angina, and heart rhythm disorders",
+      "dosage": "Dosage varies depending on the condition being treated, typically starting with 50 mg to 100 mg once or twice daily",
+      "timing": "Take with or immediately after food.",
+      "side_effects": "Common side effects include fatigue, dizziness, slow heart rate, and cold hands or feet. Rarely, serious side effects like shortness of breath or severe dizziness may occur."
+    },
+    {
+      "name": "Cimetidine",
+      "uses": "Histamine-2 blocker used to reduce stomach acid production",
+      "dosage": "Typically 200 mg to 400 mg every 6 to 12 hours, or as directed by a doctor",
+      "timing": "Take with meals or at bedtime.",
+      "side_effects": "Common side effects include headache, dizziness, diarrhea, and constipation. Rarely, more serious side effects such as confusion or hallucinations may occur."
+    },
+    {
+      "name": "Oxprenolol",
+      "uses": "Beta-blocker used to treat high blood pressure, angina, and heart rhythm disorders",
+      "dosage": "Initial dose is usually 20 mg to 40 mg twice daily, adjusted as needed",
+      "timing": "Take with or immediately after food.",
+      "side_effects": "Common side effects include fatigue, dizziness, slow heart rate, and cold hands or feet. Rarely, serious side effects like shortness of breath or severe dizziness may occur."
+    }
+  ]
+}

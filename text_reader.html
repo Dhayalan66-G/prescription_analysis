@@ -1,0 +1,147 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta charset="utf-8" />
+    <title>Prescription Scanner</title>
+    <meta name="description" content="Demo: Text Reader running in the Browser." />
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" rel="stylesheet">
+    <style>
+        /* Custom styles */
+        body {
+            background-image: url('back3.png');
+            background-size: cover;
+            background-repeat: no-repeat;
+            background-attachment: fixed;
+        }
+
+        .blue-box {
+            background-color: #007bff;
+            color: white;
+            padding: 20px;
+            text-align: center;
+            margin-bottom: 20px;
+        }
+
+        .container-fluid {
+            padding-top: 20px; /* Add padding to the top of the container */
+        }
+
+        .content-center {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh; /* Make content center vertically on the page */
+        }
+
+        /* Change button colors */
+        .btn-custom {
+            background-color: #007bff;
+            border-color: #007bff;
+            color: white;
+        }
+
+        .btn-custom:hover {
+            background-color: #0056b3;
+            border-color: #0056b3;
+        }
+
+        /* Custom button frame for "Read" button */
+        .btn-read {
+            background-color: #004286; /* dark blue color */
+            color: white;
+            padding: 10px 20px;
+            border: none;
+            cursor: pointer;
+        }
+
+        /* Custom colored box container */
+        .colored-box {
+            background-color: #f0f0f0; /* Light gray color */
+            padding: 20px;
+            margin-bottom: 20px; /* Add some space below the box */
+        }
+        
+        /* Custom box container for heading */
+        .heading-box {
+            background-color: #f0f0f0; /* Light gray color */
+            padding: 20px;
+            margin-bottom: 20px; /* Add some space below the box */
+            text-align: center; /* Center text inside box */
+        }
+
+        /* Adjusting alignment of "Read text on selected image" box */
+        .read-text-box {
+            text-align: center;
+        }
+
+    </style>
+</head>
+
+<body>
+    <!-- Blue box container for the heading -->
+    <div class="blue-box">
+        <div class="container">
+            <h1 class="mt-5">Prescription Scanner</h1>
+        </div>
+    </div>
+
+    <!-- Main content -->
+    <div class="container-fluid">
+        <div class="row content-center"> <!-- Added content-center class to center the content -->
+            <div class="col-md-6">
+                <p><strong>Select a sample image, or upload your own image of a doctor's handwritten prescription for text reading</strong></p>
+                <div class="colored-box"> <!-- Colored box container -->
+                    <p>Select or upload image</p>
+                    <img src="text_reader/1.png" class="img-fluid border mb-2" onclick="set_sample_img('text_reader/1.png')" />
+                    <img src="text_reader/2.png" class="img-fluid border mb-2" onclick="set_sample_img('text_reader/2.png')" />
+                    <img src="text_reader/3.png" class="img-fluid border mb-2" onclick="set_sample_img('text_reader/3.png')" />
+                    <input type="file" id="img_loader" name="img_loader" />
+                </div>
+
+                <!-- Read text on selected image box -->
+                <div class="read-text-box">
+                    <p>Read text on selected image</p>
+                    <canvas id="canvas" width="256" height="48"></canvas><br />
+                    <button class="btn btn-read" onclick="infer()">Read</button>
+                    <button class="btn btn-custom mt-2" id="http://127.0.0.1:5000" onclick="openMedicineInfoPage()">Medicine Details</button>
+                    <p id="output" class="mt-2">OUTPUT</p>
+                </div>
+
+                <div id="chart"></div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Bootstrap JS and other scripts -->
+    <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.1/dist/umd/popper.min.js"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/onnxjs/dist/onnx.min.js"></script>
+    <script src="https://cdn.plot.ly/plotly-2.32.0.min.js"></script>
+    <script src="text_reader/model.js"></script>
+    <script src="text_reader/script.js"></script>
+
+    <script>
+        // Function to extract text and open the Medicine Information page with the extracted text
+        function openMedicineInfoPage() {
+            // Get the output text
+            const text = document.getElementById('output').innerText;
+            // Encode the extracted text to ensure it is passed properly in the URL
+            const encodedText = encodeURIComponent(text);
+            // Redirect to the Medicine Information page with the extracted text as a query parameter
+            window.location.href = `http://127.0.0.1:5000?text=${encodedText}`;
+        }
+
+        // Function to handle the output text after reading
+        function handleTextOutput(text) {
+            // Display the output text
+            document.getElementById('output').innerText = text;
+            // Show the "Medicine Details" button
+            document.getElementById('http://127.0.0.1:5000').style.display = 'inline';
+        }
+    </script>
+</body>
+
+</html>

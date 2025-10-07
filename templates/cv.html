@@ -1,0 +1,94 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Black Dot Detection</title>
+<style>
+  body {
+    background-image: url('back3.png');
+    background-size: cover;
+    background-position: center;
+    font-family: Arial, sans-serif;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    height: 100vh;
+    margin: 0;
+  }
+
+  #imageContainer {
+    position: relative;
+  }
+
+  canvas {
+    display: 100px;
+    border: 1px solid black;
+  }
+
+  #fileInput {
+    margin-top: 20px;
+    background-color: blue;
+    color: white;
+    padding: 10px 20px;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+  }
+
+  #predictedBlackDots {
+    margin-top: 20px;
+  }
+</style>
+</head>
+<body>
+  <h1>Medicine taken patient scanner with box container</h1>
+  <div id="imageContainer">
+    <canvas id="canvas"></canvas>
+  </div>
+  <input type="file" id="fileInput" accept="image/*">
+  <div id="predictedBlackDots"></div>
+
+  <script>
+    const fileInput = document.getElementById('fileInput');
+    const canvas = document.getElementById('canvas');
+    const ctx = canvas.getContext('2d');
+    const predictedBlackDotsDisplay = document.getElementById('predictedBlackDots');
+
+    fileInput.addEventListener('change', function(event) {
+      const file = event.target.files[0];
+      const reader = new FileReader();
+
+      reader.onload = function(readerEvent) {
+        const image = new Image();
+        image.onload = function() {
+          canvas.width = image.width;
+          canvas.height = image.height;
+          ctx.drawImage(image, 0, 0);
+
+          // Analyze the image for black points
+          const imageData = ctx.getImageData(0, 0, canvas.width, canvas.height);
+          const data = imageData.data;
+          let blackPointCount = 0;
+
+          for (let i = 0; i < data.length; i += 4) {
+            // Check if the pixel is black
+            if (data[i] === 0 && data[i + 1] === 0 && data[i + 2] === 0) {
+              blackPointCount++;
+            }
+          }
+
+          // Predict the number of bigger size black dots based on size
+          const predictedBlackDots = Math.round(Math.sqrt(blackPointCount / 100)); // Adjust the divisor and scale as needed
+          predictedBlackDotsDisplay.textContent = `Medicine Taken Number of Times: ${predictedBlackDots} Times`;
+        };
+
+        image.src = readerEvent.target.result;
+      };
+
+      reader.readAsDataURL(file);
+    });
+  </script>
+</body>
+</html>

@@ -1,0 +1,93 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Medimind AI Chatbot</title>
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+    <style>
+        body {
+            background-image: url('back.png');
+            background-size: cover;
+            background-repeat: no-repeat;
+            background-position: center;
+            height: 100vh;
+            margin: 0;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+        }
+        .container {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100%;
+            flex-direction: column;
+            background-color: rgba(255, 255, 255, 0.8); /* Adds a white background with some transparency */
+            padding: 20px;
+            border-radius: 10px;
+        }
+        .chat-container {
+            border: 1px solid #ccc;
+            padding: 20px;
+            max-width: 400px;
+            width: 100%;
+        }
+        #log {
+            text-align: center;
+        }
+        .alert {
+            display: none;
+        }
+        .logo-container img {
+            max-width: 500px; /* Adjust size as needed */
+            height: 200px;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <div class="logo-container text-center mb-3">
+            <img src="Prescription-logo.png" alt="Prescription Logo">
+        </div>
+        <div class="chat-container">
+            <h1 class="text-center">Medimind AI Chatbot</h1>
+            <form id="login-form">
+                <div class="form-group">
+                    <label for="username">Username</label>
+                    <input type="text" class="form-control" id="username" placeholder="Enter your username" aria-describedby="usernameHelp" required>
+                    <small id="usernameHelp" class="form-text text-muted">Your unique username.</small>
+                </div>
+                <div class="form-group">
+                    <label for="password">Password</label>
+                    <input type="password" class="form-control" id="password" placeholder="Enter your password" required>
+                </div>
+                <div class="alert alert-danger" role="alert" id="error-message">
+                    Please enter both username and password.
+                </div>
+                <div id="log">
+                    <button type="submit" class="btn btn-primary">Login</button>
+                </div>
+            </form>
+        </div>
+    </div>
+
+    <audio id="audio-player" controls style="display: none;"></audio>
+
+    <script>
+        document.getElementById('login-form').addEventListener('submit', function(event) {
+            event.preventDefault();
+            var username = document.getElementById('username').value.trim();
+            var password = document.getElementById('password').value.trim();
+            var errorMessage = document.getElementById('error-message');
+            
+            if (username === '' || password === '') {
+                errorMessage.style.display = 'block';
+            } else {
+                errorMessage.style.display = 'none';
+                window.location.href = 'text_reader.html';
+            }
+        });
+    </script>
+</body>
+</html>
